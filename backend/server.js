@@ -11,8 +11,31 @@ const app = express();
 const prisma = new PrismaClient();
 const PORT = process.env.PORT || 3001;
 
+// ============================================
+// CONFIGURACIÓN DE CORS
+// ============================================
+const corsOptions = {
+  origin: function (origin, callback) {
+    const allowedOrigins = [
+      'http://localhost:3000',
+      'http://localhost:5173',
+      'https://citas-app-kcg1.vercel.app',  // ← Tu dominio de Vercel
+      'http://165.227.66.41',                // ← Tu IP del VPS
+    ];
+    
+    // Permitir requests sin origin (como Postman, curl, o requests del mismo servidor)
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true,
+  optionsSuccessStatus: 200
+};
+
 // Middleware
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(express.json());
 
 // ============================================

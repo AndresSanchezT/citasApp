@@ -29,6 +29,18 @@ function LandingPage() {
   const [alert, setAlert] = useState<AlertState | null>(null);
   const [loading, setLoading] = useState(false);
 
+  const [backendStatus, setBackendStatus] = useState("");
+
+  useEffect(() => {
+    citasService
+      .health()
+      .then((data) => setBackendStatus(data.message))
+      .catch((err) => {
+        setBackendStatus("Error al conectar al backend");
+        console.log(err)
+      });
+  }, []);
+
   useEffect(() => {
     // Validar domingo en tiempo real
     if (formData.fecha) {
@@ -56,7 +68,7 @@ function LandingPage() {
         });
       }
     }
-  }, [formData.fecha]); 
+  }, [formData.fecha]);
 
   useEffect(() => {
     // Validar horario en tiempo real
@@ -298,6 +310,19 @@ function LandingPage() {
           </div>
         </div>
       </section>
+
+      {backendStatus && (
+        <div
+          style={{
+            padding: "10px",
+            background: "#e0f7fa",
+            margin: "1rem 0",
+            borderRadius: "5px",
+          }}
+        >
+          🔌 Estado del backend: {backendStatus}
+        </div>
+      )}
 
       {/* Form Section */}
       <section className="form-section" id="agendar">
