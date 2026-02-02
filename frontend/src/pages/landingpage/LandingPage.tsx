@@ -276,9 +276,11 @@ function LandingPage() {
               <p className="hero-note">✓ No requiere tarjeta de crédito</p>
             </div>
             <div className="hero-image">
-              <div className="doctor-placeholder">
-                <span style={{ fontSize: "4rem" }}>👩‍⚕️</span>
-              </div>
+              <img
+                src="/doctora_img.png"
+                alt="Doctora atendiendo paciente"
+                className="hero-img"
+              />
             </div>
           </div>
         </div>

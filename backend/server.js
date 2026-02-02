@@ -17,10 +17,10 @@ const PORT = process.env.PORT || 3001;
 const corsOptions = {
   origin: function (origin, callback) {
     const allowedOrigins = [
-      'http://localhost:3000',
-      'http://localhost:5173',
-      'https://citas-app-kcg1.vercel.app',  // ← Tu dominio de Vercel
-      'http://165.227.66.41',                // ← Tu IP del VPS
+      "http://localhost:3000",
+      "http://localhost:5173",
+      "https://citas-app-isjp.vercel.app",
+      "https://citasmedicas.duckdns.org",
     ];
     
     // Permitir requests sin origin (como Postman, curl, o requests del mismo servidor)
